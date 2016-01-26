@@ -35,8 +35,8 @@ namespace NetStock
             DateTime dt = new DateTime(DateTime.Now.Ticks);
             string curTime = dt.ToString("yyyyMMdd");
 
-            DateTime dt2 = dt.AddMonths(-2);
-            dt2 = dt2.AddDays(-20);
+            DateTime dt2 = dt.AddMonths(-12);
+            //dt2 = dt2.AddDays(-20);
             string beginTime = dt2.ToLocalTime().ToString("yyyyMMdd");
 
             // LST CODE
@@ -60,6 +60,7 @@ namespace NetStock
             {
                 try
                 {
+                    //string url = "http://quotes.money.163.com/service/chddata.html?code=0000001&start=20100101&end=20160121";
                     string url = string.Format(GetHttpData.urlFormat, "", lstCode[i], beginTime, curTime);
                     string contents = GetHttpData.GetUrltoHtml(url, "GB18030");
                     string[] lines = contents.Split('\n');
@@ -111,7 +112,7 @@ namespace NetStock
                         }
                     }
 
-                    sc.WriteFile();
+                    //sc.WriteFile();
                 }
                 catch (Exception ex)
                 {
@@ -137,26 +138,26 @@ namespace NetStock
             {
                 try {
                 string[] rows = line.Split(',');
-                string time = rows[0];
-                string code = rows[1];
-                string name = rows[2];
-                float last = Convert.ToSingle(rows[3]);
-                float high = Convert.ToSingle(rows[4]);
-                float low = Convert.ToSingle(rows[5]);
-                float start = Convert.ToSingle(rows[6]);
-                float yes_last = Convert.ToSingle(rows[7]);
-                float price = Convert.ToSingle(rows[8]);
-                float rate = Convert.ToSingle(rows[9]);
+                time = rows[0];
+                code = rows[1];
+                name = rows[2];
+                last = Convert.ToSingle(rows[3]);
+                high = Convert.ToSingle(rows[4]);
+                low = Convert.ToSingle(rows[5]);
+                start = Convert.ToSingle(rows[6]);
+                yes_last = Convert.ToSingle(rows[7]);
+                price = Convert.ToSingle(rows[8]);
+                rate = Convert.ToSingle(rows[9]);
 
-                float chg_rate = Convert.ToSingle(rows[10]);
-                int chg_num = Convert.ToInt32(rows[11]);
-                float chg_value = Convert.ToSingle(rows[12]);
-                int total = Convert.ToInt32(rows[13]);
-                int total_on = Convert.ToInt32(rows[14]);
+                chg_rate = Convert.ToSingle(rows[10]);
+                chg_num = Convert.ToInt32(rows[11]);
+                chg_value = Convert.ToSingle(rows[12]);
+                total = Convert.ToSingle(rows[13]);
+                total_on = Convert.ToSingle(rows[14]);
                 }
                 catch (Exception e) { Console.WriteLine(e.Message + "\n" + line); }
             }
-            public CLineContents();
+            public CLineContents() { }
             public string time;
             public string code;
             public string name;
@@ -171,8 +172,8 @@ namespace NetStock
             public float chg_rate;
             public int chg_num;
             public float chg_value;
-            public int total;
-            public int total_on;
+            public float total;
+            public float total_on;
         }
 
         public class CStockContents
