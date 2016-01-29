@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CAllStockCode.cs" />
+    <Compile Include="CLineContents.cs" />
+    <Compile Include="CStockContents.cs" />
+    <Compile Include="CTime.cs" />
+    <Compile Include="GetHttpData.cs" />
     <Compile Include="LitJson\IJsonWrapper.cs" />
     <Compile Include="LitJson\JsonData.cs" />
     <Compile Include="LitJson\JsonException.cs" />
